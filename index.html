@@ -16,10 +16,22 @@
         
         <!-- Also reference JQuery for reading the geojson (point layer) -->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> 
+
+	<link href='https://fonts.googleapis.com/css?family=Charmonman' rel='stylesheet'> 
         
         <style type="text/css">
           html, body { margin: 0; padding: 0; height: 100%; }
           #map { min-height: 100%; }
+
+	  .title {
+                padding: 6px 8px;
+                font-family: 'Charmonman';font-size: 22px;
+                background: white;
+                background: rgba(117,107,177);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 10px;
+            }
+		
         </style>
 
     </head>
@@ -52,6 +64,17 @@
                         });                     
             map.addLayer(heat);
           });
+
+	var title = L.control({position: 'topright'}); // position of the title
+
+          title.onAdd = function (map) {
+              this._div = L.DomUtil.create('div', 'title'); // create a div with a class "title"
+              this._div.innerHTML = "<h4>Top 10 Gross Migration to Cook County, Illinois</h4>";  // Title text, may use html to customize
+              return this._div;
+          };
+
+          title.addTo(map);
+
 
         </script>
    </body>
